@@ -3,12 +3,15 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * User
  *
  * @ORM\Table(name="user_table")
  * @ORM\Entity(repositoryClass="Acme\DemoBundle\Entity\UserRepository")
+ * @ExclusionPolicy("all")
  */
 class User
 {
@@ -18,6 +21,7 @@ class User
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -25,6 +29,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     * @Expose
      */
     private $username;
 
@@ -32,6 +37,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Expose
      */
     private $email;
 
@@ -39,6 +45,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     * @Expose
      */
     private $password;
 
@@ -46,6 +53,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Expose
      */
     private $createdAt;
 
@@ -53,6 +61,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Expose
      */
     private $updatedAt;
 
@@ -60,6 +69,7 @@ class User
      * @var integer
      *
      * @ORM\Column(name="age", type="integer")
+     * @Expose
      */
     private $age;
 

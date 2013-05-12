@@ -73,8 +73,7 @@
   72 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
   73 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\ParamConverterInterface',
   74 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\ParamConverterManager',
-  75 => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
-  76 => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\CacheListener',
-  77 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ConfigurationAnnotation',
-  78 => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerResolver',
+  75 => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\CacheListener',
+  76 => 'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ConfigurationAnnotation',
+  77 => 'JMS\\DiExtraBundle\\HttpKernel\\ControllerResolver',
 );

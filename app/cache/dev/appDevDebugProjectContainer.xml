@@ -32,8 +32,8 @@
     <parameter key="database_host">127.0.0.1</parameter>
     <parameter key="database_port">null</parameter>
     <parameter key="database_name">symfony</parameter>
-    <parameter key="database_user">root</parameter>
-    <parameter key="database_password">null</parameter>
+    <parameter key="database_user">symfony</parameter>
+    <parameter key="database_password">Shub9aiJ</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -464,7 +464,6 @@
     <parameter key="sensio_framework_extra.converter.manager.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager</parameter>
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
-    <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="jms_aop.cache_dir">/vagrant/app/cache/dev/jms_aop</parameter>
     <parameter key="jms_aop.interceptor_loader.class">JMS\AopBundle\Aop\InterceptorLoader</parameter>
     <parameter key="jms_di_extra.metadata.driver.annotation_driver.class">JMS\DiExtraBundle\Metadata\Driver\AnnotationDriver</parameter>
@@ -482,8 +481,8 @@
     <parameter key="jms_di_extra.disable_grep">false</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
     <parameter key="jms_di_extra.cache_warmer.controller_file_blacklist" type="collection"/>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/vagrant/app/cache/dev/jms_diextra/doctrine/EntityManager_517a971ed9aa3.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager517a971ed9aa3_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/vagrant/app/cache/dev/jms_diextra/doctrine/EntityManager_518f746965476.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager518f746965476_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -533,16 +532,17 @@
     <parameter key="fos_rest.request.param_fetcher.reader.class">FOS\RestBundle\Request\ParamReader</parameter>
     <parameter key="fos_rest.cache_dir">/vagrant/app/cache/dev/fos_rest</parameter>
     <parameter key="fos_rest.formats" type="collection">
-      <parameter key="rss">false</parameter>
+      <parameter key="json">false</parameter>
       <parameter key="html">true</parameter>
     </parameter>
     <parameter key="fos_rest.default_engine">twig</parameter>
     <parameter key="fos_rest.force_redirects" type="collection">
-      <parameter key="html">302</parameter>
+      <parameter key="json">302</parameter>
     </parameter>
     <parameter key="fos_rest.failed_validation">400</parameter>
     <parameter key="fos_rest.empty_content">204</parameter>
     <parameter key="fos_rest.serialize_null">false</parameter>
+    <parameter key="fos_rest.view_response_listener.force_view">true</parameter>
     <parameter key="fos_rest.routing.loader.default_format">null</parameter>
     <parameter key="fos_rest.exception.codes" type="collection"/>
     <parameter key="fos_rest.exception.messages" type="collection"/>
@@ -714,9 +714,17 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument>sensio_framework_extra.cache.listener</argument>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
-          <argument>sensio_framework_extra.view.listener</argument>
+          <argument>fos_rest.view_response_listener</argument>
           <argument>onKernelController</argument>
         </argument>
         <argument>0</argument>
@@ -724,18 +732,10 @@
       <call method="addListenerService">
         <argument>kernel.view</argument>
         <argument type="collection">
-          <argument>sensio_framework_extra.view.listener</argument>
+          <argument>fos_rest.view_response_listener</argument>
           <argument>onKernelView</argument>
         </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>kernel.response</argument>
-        <argument type="collection">
-          <argument>sensio_framework_extra.cache.listener</argument>
-          <argument>onKernelResponse</argument>
-        </argument>
-        <argument>0</argument>
+        <argument>100</argument>
       </call>
       <call method="addListenerService">
         <argument>kernel.request</argument>
@@ -2311,8 +2311,8 @@
         <argument key="dbname">symfony</argument>
         <argument key="host">127.0.0.1</argument>
         <argument key="port">null</argument>
-        <argument key="user">root</argument>
-        <argument key="password">null</argument>
+        <argument key="user">symfony</argument>
+        <argument key="password">Shub9aiJ</argument>
         <argument key="charset">UTF8</argument>
         <argument key="driver">pdo_mysql</argument>
         <argument key="driverOptions" type="collection"/>
@@ -2366,15 +2366,17 @@
       <argument type="collection"/>
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager517a971ed9aa3_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>/vagrant/app/cache/dev/jms_diextra/doctrine/EntityManager_517a971ed9aa3.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager518f746965476_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>/vagrant/app/cache/dev/jms_diextra/doctrine/EntityManager_518f746965476.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
           <argument type="service">
             <service class="Doctrine\ORM\Configuration" public="false">
               <call method="setEntityNamespaces">
-                <argument type="collection"/>
+                <argument type="collection">
+                  <argument key="AcmeDemoBundle">Acme\DemoBundle\Entity</argument>
+                </argument>
               </call>
               <call method="setMetadataCacheImpl">
                 <argument type="service">
@@ -2405,7 +2407,19 @@
               </call>
               <call method="setMetadataDriverImpl">
                 <argument type="service">
-                  <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false"/>
+                  <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
+                    <call method="addDriver">
+                      <argument type="service">
+                        <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                          <argument type="service" id="annotation_reader"/>
+                          <argument type="collection">
+                            <argument>/vagrant/src/Acme/DemoBundle/Entity</argument>
+                          </argument>
+                        </service>
+                      </argument>
+                      <argument>Acme\DemoBundle\Entity</argument>
+                    </call>
+                  </service>
                 </argument>
               </call>
               <call method="setProxyDir">
@@ -2464,11 +2478,6 @@
     </service>
     <service id="sensio_framework_extra.converter.datetime" class="Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter">
       <tag name="request.param_converter" converter="datetime"/>
-    </service>
-    <service id="sensio_framework_extra.view.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener">
-      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
-      <tag name="kernel.event_listener" event="kernel.view" method="onKernelView"/>
-      <argument type="service" id="service_container"/>
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse"/>
@@ -2621,6 +2630,11 @@
     </service>
     <service id="fos_rest.request.param_fetcher.reader" class="FOS\RestBundle\Request\ParamReader">
       <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.view_response_listener" class="FOS\RestBundle\EventListener\ViewResponseListener">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+      <tag name="kernel.event_listener" event="kernel.view" method="onKernelView" priority="100"/>
+      <argument type="service" id="service_container"/>
     </service>
     <service id="fos_rest.decoder.json" class="FOS\Rest\Decoder\JsonDecoder"/>
     <service id="fos_rest.decoder.xml" class="FOS\Rest\Decoder\XmlDecoder"/>
@@ -3434,14 +3448,14 @@
     </service>
     <service id="fos_rest.view_handler" class="FOS\RestBundle\View\ViewHandler">
       <argument type="collection">
-        <argument key="rss">false</argument>
+        <argument key="json">false</argument>
         <argument key="html">true</argument>
       </argument>
       <argument>400</argument>
       <argument>204</argument>
       <argument>false</argument>
       <argument type="collection">
-        <argument key="html">302</argument>
+        <argument key="json">302</argument>
       </argument>
       <argument>twig</argument>
       <call method="setContainer">

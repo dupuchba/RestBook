@@ -65,13 +65,17 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_rest:
+    body_listener: true
+    format_listener: true
     view:
+        view_response_listener: force
         formats:
-            rss: true
+            json: true
             xml: false
-        templating_formats:
-            html: true
         force_redirects:
-            html: true
+            json: true
         failed_validation: HTTP_BAD_REQUEST
-        default_engine: twig
+
+sensio_framework_extra:
+    view:    { annotations: false }
+    router:  { annotations: true }

@@ -6,6 +6,14 @@ _demo_secured:
     resource: "@AcmeDemoBundle/Controller/SecuredController.php"
     type:     annotation
 
+_demo_api:
+    resource: "@AcmeDemoBundle/Controller/ApiController.php"
+    type:     annotation
+
+_demo_secured_user:
+    resource: "@AcmeDemoBundle/Controller/UserController.php"
+    type:     annotation
+
 _demo:
     resource: "@AcmeDemoBundle/Controller/DemoController.php"
     type:     annotation
