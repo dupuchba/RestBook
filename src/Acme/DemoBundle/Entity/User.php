@@ -232,4 +232,14 @@ class User
     {
         return $this->age;
     }
+
+    /**
+     * Check if the object is new
+     *
+     * @return boolean
+     */
+    public function isNew()
+    {
+        return $this->id === null ? true : false;
+    }
 }

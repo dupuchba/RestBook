@@ -9,6 +9,10 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use JMS\DiExtraBundle\Annotation as DI;
 use Acme\DemoBundle\Entity\User;
+use Acme\DemoBundle\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\View\View;
 
 /**
  * @Route("/api")
@@ -51,10 +55,35 @@ class ApiController extends Controller
 
     /**
      * @Route("/users")
-     * @Template()
+     * @Method({"POST"})
      */
     public function newUserAction()
     {
+        return $this->processForm(new User());
+    }
+
+    private function processForm(User $user) 
+    {
+        $statusCode = $user->isNew() ? 201 : 204;
+
+        $form = $this->createForm(new UserType(), $user);
+        $form->bindRequsest($this->getRequest());
+
+        if ($form->isValid()) {
+            $this->em->persist($user);
+            $this->em->flush();
+
+            $response = new Response();
+            $response->setStatusCode($statusCode);
+
+            if (201 === $statusCode) {
+                var_dump("yeahhh"); 
+            }
+
+            return $response;
+        }
+
+        return View::create($form, 400);
     }
 
     /**
