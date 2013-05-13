@@ -39,3 +39,7 @@ app/cache/dev/profiler
 app/cache/dev/sessions
 app/cache/dev/templates.php
 app/cache/dev/twig
+vendor/gedmo
+vendor/liip
+vendor/stof
+app/cache/prod

@@ -66,12 +66,14 @@ swiftmailer:
 
 fos_rest:
     body_listener: true
-    format_listener: true
+    format_listener:
+        default_priorities: ['json']
+        fallback_format: json
     view:
         view_response_listener: force
         formats:
-            json: true
             xml: false
+            json: true
         force_redirects:
             json: true
         failed_validation: HTTP_BAD_REQUEST
@@ -79,3 +81,7 @@ fos_rest:
 sensio_framework_extra:
     view:    { annotations: false }
     router:  { annotations: true }
+
+liip_code:
+    edit_command: "vim -f"
+    view_command: "vim -f"

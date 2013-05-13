@@ -3,15 +3,16 @@
 namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
+ * @Serializer\XmlRoot("user")
  * @ORM\Table(name="user_table")
  * @ORM\Entity(repositoryClass="Acme\DemoBundle\Entity\UserRepository")
- * @ExclusionPolicy("all")
+ * @Serializer\ExclusionPolicy("all")
  */
 class User
 {
@@ -21,7 +22,8 @@ class User
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("id")
      */
     private $id;
 
@@ -29,7 +31,9 @@ class User
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("username")
+     * @Assert\NotBlank()
      */
     private $username;
 
@@ -37,7 +41,12 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("email")
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -45,7 +54,6 @@ class User
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
-     * @Expose
      */
     private $password;
 
@@ -53,7 +61,8 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("createdAt")
      */
     private $createdAt;
 
@@ -61,7 +70,8 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("updatedAt")
      */
     private $updatedAt;
 
@@ -69,7 +79,8 @@ class User
      * @var integer
      *
      * @ORM\Column(name="age", type="integer")
-     * @Expose
+     * @Serializer\Expose
+     * @Serializer\SerializedName("age")
      */
     private $age;
 

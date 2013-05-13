@@ -12,10 +12,8 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('email')
-            ->add('password')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('email', 'email')
+            ->add('password', 'password')
             ->add('age')
         ;
     }
@@ -23,12 +21,13 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Acme\DemoBundle\Entity\User'
+            'data_class' => 'Acme\DemoBundle\Entity\User',
+            'csrf_protection' => false,
         ));
     }
 
     public function getName()
     {
-        return 'acme_demobundle_usertype';
+        return 'user';
     }
 }

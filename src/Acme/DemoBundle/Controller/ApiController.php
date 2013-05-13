@@ -7,18 +7,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use JMS\DiExtraBundle\Annotation as DI;
+use Acme\DemoBundle\Entity\User;
 
+/**
+ * @Route("/api")
+ */
 class ApiController extends Controller
 {
+    /** @DI\Inject("doctrine.orm.entity_manager") */
+    private $em;
+
     /**
-     * @Route("/api/users")
+     * @Route("/users", name="acme_users_get_all")
      * @Rest\View
      */
     public function getUsersAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('AcmeDemoBundle:User')->findAll();
+        $users = $this->em->getRepository('AcmeDemoBundle:User')->findAll();
 
         return array(
             'users' => $users,
@@ -26,15 +32,25 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/api/users/{id}")
-     * @Template()
+     * @Route("/users/{id}", requirements={"id" = "\d+"}, name="acme_users_get")
+     * @Rest\View
+     * @Rest\Get
      */
     public function getUserAction($id)
     {
+        $user = $this->em->getRepository('AcmeDemoBundle:User')->find($id);
+
+        if (!$user instanceof User) {
+            throw new NotFoundHttpException('User not found');
+        }
+
+        return array(
+            'user' => $user,
+        );
     }
 
     /**
-     * @Route("/api/users")
+     * @Route("/users")
      * @Template()
      */
     public function newUserAction()
@@ -42,7 +58,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/api/users/{id}")
+     * @Route("/users/{id}")
      * @Template()
      */
     public function editUserAction($id)
@@ -50,7 +66,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/api/users/{id}")
+     * @Route("/users/{id}")
      * @Template()
      */
     public function deleteUserAction($id)
