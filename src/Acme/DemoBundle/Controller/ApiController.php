@@ -94,19 +94,28 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/users/{id}")
-     * @Template()
+     * @Route("/users/{id}"), requirements={"id" = "\d+"}, name="acme_users_edit"
+     * @Method({"PUT"})
      */
     public function editUserAction($id)
     {
+        if (null === $user = $this->em->getRepository('AcmeDemoBundle:User')->find($id)) {
+            $user = new User();
+        }
+        return $this->processForm($user);
     }
 
     /**
-     * @Route("/users/{id}")
-     * @Template()
+     * @Route("/users/{id}"), requirements={"id" = "\d+"}, name="acme_users_delete"
+     * @Method({"DELETE"})
+     * @Rest\View(statusCode=204)
      */
     public function deleteUserAction($id)
     {
+        $user = $this->em->getRepository('AcmeDemoBundle:User')->find($id);
+
+        $this->em->remove($user);
+        $this->em->flush();
     }
 
 }
