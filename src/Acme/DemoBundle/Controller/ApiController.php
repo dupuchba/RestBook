@@ -25,6 +25,7 @@ class ApiController extends Controller
     /**
      * @Route("/users", name="acme_users_get_all")
      * @Rest\View
+     * @Method({"GET"})
      */
     public function getUsersAction()
     {
@@ -67,7 +68,7 @@ class ApiController extends Controller
         $statusCode = $user->isNew() ? 201 : 204;
 
         $form = $this->createForm(new UserType(), $user);
-        $form->bindRequsest($this->getRequest());
+        $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {
             $this->em->persist($user);
@@ -77,7 +78,13 @@ class ApiController extends Controller
             $response->setStatusCode($statusCode);
 
             if (201 === $statusCode) {
-                var_dump("yeahhh"); 
+                $response->headers->set('Location',
+                    $this->generateUrl(
+                        'acme_users_get',
+                        array('id' => $user->getId()),
+                        true
+                    )
+                );
             }
 
             return $response;

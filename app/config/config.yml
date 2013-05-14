@@ -85,3 +85,9 @@ sensio_framework_extra:
 liip_code:
     edit_command: "vim -f"
     view_command: "vim -f"
+
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            timestampable: true# not needed: listeners are not enabled by default
