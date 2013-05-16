@@ -37,6 +37,20 @@ class ApiController extends Controller
     }
 
     /**
+     * @Route("/books", name="acme_books_get_all")
+     * @Rest\View
+     * @Method({"GET"})
+     */
+    public function getBooksAction()
+    {
+        $books = $this->em->getRepository('AcmeDemoBundle:Book')->findAll();
+
+        return array(
+            'books' => $books,
+        );
+    }
+
+    /**
      * @Route("/users/{id}", requirements={"id" = "\d+"}, name="acme_users_get")
      * @Rest\View
      * @Rest\Get

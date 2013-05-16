@@ -10,7 +10,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * User
  *
- * @Serializer\XmlRoot("user")
  * @ORM\Table(name="user_table")
  * @ORM\Entity(repositoryClass="Acme\DemoBundle\Entity\UserRepository")
  * @Serializer\ExclusionPolicy("all")
