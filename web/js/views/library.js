@@ -44,9 +44,14 @@ app.LibraryView = Backbone.View.extend({
 
         $('#addBook div').children('input').each( function(i, el) {
             if($(el).val() != '') {
-                formData[el.id] = $(el).val();
+                if(el.id === 'releaseDate') {
+                    formData[el.id] = $('#releaseDate').datepicker('getDate').getTime();
+                }
+                else {
+                    formData[el.id] = $(el).val();
+                }
             }
-                console.log(formData);
+            $( el ).val('');
         });
         this.collection.create(new app.Book(formData));
     }
