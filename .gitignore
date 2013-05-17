@@ -15,8 +15,6 @@ vendor/sensio
 vendor/swiftmailer
 vendor/symfony
 vendor/twig
-vagrant/puppet
-Vagrantfile
 app/cache/dev
 app/logs/dev.log
 app/cache/dev/annotations
