@@ -13,6 +13,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="book_table")
  * @ORM\Entity
  * @Serializer\ExclusionPolicy("all")
+ * @Serializer\XmlRoot("")
  */
 class Book
 {
@@ -45,15 +46,16 @@ class Book
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="releaseDate", type="datetime")
+     * @ORM\Column(name="releaseDate", type="datetime", nullable=true)
      * @Serializer\Expose
+     * @Serializer\SerializedName("releaseDate")
      */
     private $releaseDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="keywords", type="string", length=255)
+     * @ORM\Column(name="keywords", type="string", length=255, nullable=true)
      * @Serializer\Expose
      */
     private $keywords;
@@ -62,6 +64,7 @@ class Book
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -69,6 +72,7 @@ class Book
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -219,5 +223,15 @@ class Book
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Check if the object is new
+     *
+     * @return boolean
+     */
+    public function isNew()
+    {
+        return $this->id === null ? true : false;
     }
 }
