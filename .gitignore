@@ -41,3 +41,4 @@ vendor/gedmo
 vendor/liip
 vendor/stof
 app/cache/prod
+php-cs-fixer.phar

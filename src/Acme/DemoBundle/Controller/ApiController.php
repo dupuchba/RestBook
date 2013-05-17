@@ -4,12 +4,10 @@ namespace Acme\DemoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use JMS\DiExtraBundle\Annotation as DI;
 use Acme\DemoBundle\Entity\Book;
-use Acme\DemoBundle\Form\UserType;
 use Acme\DemoBundle\Form\BookType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,7 +57,7 @@ class ApiController extends Controller
         return $this->processBookForm(new Book());
     }
 
-    private function processBookForm(Book $book) 
+    private function processBookForm(Book $book)
     {
         $statusCode = $book->isNew() ? 201 : 204;
 

@@ -41,11 +41,12 @@ Enjoy the code :) by opening the index.html file
 The project right now is very minimalist. The idea is to show a very simple implementation of FOSRestBundle working with a modern Javascript MV* library like backbone.
 
 TODO:
-*Implement PUT server/client side
-*Implement PATCH server/client side
-*Create a new entity nested with the Book entity
-*Validate the datas client/server side
-*Test the Rest api
+
+* Implement PUT server/client side
+* Implement PATCH server/client side
+* Create a new entity nested with the Book entity
+* Validate the datas client/server side
+* Test the Rest api
 
 
 I hope that people are going to participate in order to have a great app example!

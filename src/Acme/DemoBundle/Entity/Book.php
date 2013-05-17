@@ -4,7 +4,6 @@ namespace Acme\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
-use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -76,11 +75,10 @@ class Book
      */
     private $updatedAt;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +88,7 @@ class Book
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Book
      */
     public function setTitle($title)
@@ -103,7 +101,7 @@ class Book
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -113,7 +111,7 @@ class Book
     /**
      * Set author
      *
-     * @param string $author
+     * @param  string $author
      * @return Book
      */
     public function setAuthor($author)
@@ -126,7 +124,7 @@ class Book
     /**
      * Get author
      *
-     * @return string 
+     * @return string
      */
     public function getAuthor()
     {
@@ -136,7 +134,7 @@ class Book
     /**
      * Set releaseDate
      *
-     * @param \DateTime $releaseDate
+     * @param  \DateTime $releaseDate
      * @return Book
      */
     public function setReleaseDate($releaseDate)
@@ -149,7 +147,7 @@ class Book
     /**
      * Get releaseDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getReleaseDate()
     {
@@ -159,7 +157,7 @@ class Book
     /**
      * Set keywords
      *
-     * @param string $keywords
+     * @param  string $keywords
      * @return Book
      */
     public function setKeywords($keywords)
@@ -172,7 +170,7 @@ class Book
     /**
      * Get keywords
      *
-     * @return string 
+     * @return string
      */
     public function getKeywords()
     {
@@ -182,7 +180,7 @@ class Book
     /**
      * Set createdAt
      *
-     * @param \DateTime $createdAt
+     * @param  \DateTime $createdAt
      * @return Book
      */
     public function setCreatedAt($createdAt)
@@ -195,7 +193,7 @@ class Book
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -205,7 +203,7 @@ class Book
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param  \DateTime $updatedAt
      * @return Book
      */
     public function setUpdatedAt($updatedAt)
@@ -218,7 +216,7 @@ class Book
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
